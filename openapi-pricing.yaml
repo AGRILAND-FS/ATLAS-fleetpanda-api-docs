@@ -313,20 +313,24 @@ definitions:
       count: 2
       nextOffset: null
       prices:
-        - axxis_id: "DOOLY*EXM"
-          supplier: "DOOLY*EXM"
-          terminal: "Lemont ONK"
-          product: "LPG"
-          price: 0.66
-          effective_at: "2026-07-27 04:01:00.000"
-          ingested_at: "2026-07-28 08:44:37.088"
+        - axxis_id: "HTP ENRGY~"
+          supplier: "HTP ENRGY~"
+          terminal: "DsMoinesMG"
+          product: "87E10"
+          price: 3.12
+          effective_at: "2026-09-14 04:01:00.000"
+          ingested_at: "2026-09-14 08:44:37.088"
+          supplier_erp_id: "0345"
+          terminal_erp_id: "T-42-IA-3457"
         - axxis_id: "OFFEN*PHL~"
           supplier: "OFFEN*PHL~"
           terminal: "CheyenneMG"
           product: "87E10"
           price: 3.4612
-          effective_at: "2026-07-27 04:01:00.000"
-          ingested_at: "2026-07-28 08:44:37.088"
+          effective_at: "2026-09-14 04:01:00.000"
+          ingested_at: "2026-09-14 08:44:37.088"
+          supplier_erp_id: "0322"
+          terminal_erp_id: null
 
   IndexPrice:
     type: object
@@ -394,6 +398,21 @@ definitions:
         type: string
         description: "When ATLAS read the upstream file. UTC."
         example: "2026-07-28 08:44:37.088"
+      supplier_erp_id:
+        type: string
+        x-nullable: true
+        description: |
+          The supplier's id in Agriland's ERP (Agvance vendor id), as maintained by the
+          Energy team. `null` until someone has mapped this `axxis_id`; the price still
+          flows. Once set it is stable. Added 2026-09-14.
+        example: "0345"
+      terminal_erp_id:
+        type: string
+        x-nullable: true
+        description: |
+          The terminal's ERP id (the id FleetPanda already uses for the terminal). `null`
+          until the terminal has been mapped. Added 2026-09-14.
+        example: "T-42-IA-3457"
 
   ErrorResponse:
     type: object
